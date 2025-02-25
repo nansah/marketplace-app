@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messaging Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Chat with a Seamstress</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="designer-dashboard.html">Designer Dashboard</a>
+        </nav>
+    </header>
+    <section class="chat">
+        <h2>Message Anna (Seamstress)</h2>
+        <div id="chat-box"></div>
+        
+        <form id="chat-form">
+            <input type="text" id="message" placeholder="Type your message..." required>
+            
+            <!-- Image Upload Icon -->
+            <label for="image-upload" class="upload-icon">📷 Upload Image</label>
+            <input type="file" id="image-upload" accept="image/*" hidden>
+
+            <button id="open-measurements" class="upload-icon">📏 Add Measurements</button>
+<!-- Measurement Form Popover -->
+<div id="measurement-form" class="popover hidden">
+    <h3>Enter Your Measurements</h3>
+    <label>Bust (inches):</label>
+    <input type="number" id="bust" required>
+    <label>Waist (inches):</label>
+    <input type="number" id="waist" required>
+    <label>Hips (inches):</label>
+    <input type="number" id="hips" required>
+    <label>Shoulder to Waist (inches):</label>
+    <input type="number" id="shoulder-waist" required>
+    <label>Waist to Knee (inches):</label>
+    <input type="number" id="waist-knee" required>
+    <button id="save-measurements">Save Measurements</button>
+    <button id="close-measurements">Close</button>
+</div>
+
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
