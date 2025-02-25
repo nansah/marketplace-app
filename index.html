@@ -29,9 +29,20 @@
     </section>
 
     <section class="filters">
-        <button class="filter-btn">💲 Price Range</button>
-        <button class="filter-btn">🎨 Specialty</button>
-        <button class="filter-btn">📍 Location</button>
+        <select id="filter-price">
+            <option value="">💲 Price Range</option>
+            <option value="low">$ - Affordable</option>
+            <option value="medium">$$ - Mid-range</option>
+            <option value="high">$$$ - Luxury</option>
+        </select>
+        <select id="filter-specialty">
+            <option value="">🎨 Specialty</option>
+            <option value="wedding">Wedding Dresses</option>
+            <option value="suits">Custom Suits</option>
+            <option value="casual">Casual Wear</option>
+        </select>
+        <input type="text" id="filter-location" placeholder="📍 Enter Location">
+        <button id="apply-filters">Apply Filters</button>
     </section>
 
     <section id="search-results">

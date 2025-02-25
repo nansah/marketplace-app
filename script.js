@@ -11,35 +11,53 @@ function rotateText() {
 
 setInterval(rotateText, 3000);
 
-// Search & Filtering Functionality
-const searchBtn = document.getElementById("search-btn");
-const searchBar = document.getElementById("search-bar");
-const resultsList = document.getElementById("results-list");
-
+// Demo Seamstress Data
 const designers = [
-    { name: "Anna Tailoring", specialty: "Wedding Dresses", price: "$$$", location: "New York", orders: 3 },
-    { name: "Mike Custom Suits", specialty: "Men's Suits", price: "$$", location: "Los Angeles", orders: 5 },
-    { name: "Casual Creations", specialty: "Casual Wear", price: "$", location: "Chicago", orders: 2 },
+    { name: "Anna Tailoring", specialty: "wedding", price: "high", location: "New York", orders: 3, image: "profile1.jpg" },
+    { name: "Mike Custom Suits", specialty: "suits", price: "medium", location: "Los Angeles", orders: 5, image: "profile2.jpg" },
+    { name: "Casual Creations", specialty: "casual", price: "low", location: "Chicago", orders: 2, image: "profile3.jpg" },
+    { name: "Elegant Stitch", specialty: "wedding", price: "high", location: "Atlanta", orders: 4, image: "profile4.jpg" },
+    { name: "Urban Tailors", specialty: "suits", price: "medium", location: "Houston", orders: 6, image: "profile5.jpg" },
 ];
 
-function searchDesigners() {
-    const query = searchBar.value.toLowerCase();
+const resultsList = document.getElementById("results-list");
+const searchBtn = document.getElementById("search-btn");
+const searchBar = document.getElementById("search-bar");
+const filterSpecialty = document.getElementById("filter-specialty");
+const filterPrice = document.getElementById("filter-price");
+const filterLocation = document.getElementById("filter-location");
+const applyFilters = document.getElementById("apply-filters");
 
-    const filteredResults = designers.filter(designer => 
-        designer.name.toLowerCase().includes(query) ||
-        designer.specialty.toLowerCase().includes(query) ||
-        designer.location.toLowerCase().includes(query)
-    );
-
+function displayResults(filteredResults) {
     resultsList.innerHTML = filteredResults.length > 0 ? 
         filteredResults.map(d => `
             <div class="profile-card">
-                <img src="profile-placeholder.jpg" alt="${d.name}" class="profile-img">
+                <img src="${d.image}" alt="${d.name}" class="profile-img">
                 <h3>${d.name}</h3>
-                <p>${d.specialty} - ${d.location} - ${d.price}</p>
+                <p>${d.specialty.toUpperCase()} - ${d.location} - ${d.price.toUpperCase()}</p>
                 <span class="order-count">${d.orders} active orders</span>
             </div>`).join("") :
         "<p>No results found.</p>";
 }
 
+function searchDesigners() {
+    const query = searchBar.value.toLowerCase();
+    const specialty = filterSpecialty.value;
+    const price = filterPrice.value;
+    const location = filterLocation.value.toLowerCase();
+
+    const filteredResults = designers.filter(designer => 
+        (designer.name.toLowerCase().includes(query) || designer.location.toLowerCase().includes(query)) &&
+        (specialty === "" || designer.specialty === specialty) &&
+        (price === "" || designer.price === price) &&
+        (location === "" || designer.location.toLowerCase().includes(location))
+    );
+
+    displayResults(filteredResults);
+}
+
 searchBtn.addEventListener("click", searchDesigners);
+applyFilters.addEventListener("click", searchDesigners);
+
+// Load all designers on page load
+document.addEventListener("DOMContentLoaded", () => displayResults(designers));

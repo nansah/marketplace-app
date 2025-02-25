@@ -45,6 +45,7 @@ header {
     padding: 100px 20px;
 }
 
+/* Search & Filters */
 .search-bar-container {
     margin-top: 20px;
     display: flex;
@@ -73,7 +74,7 @@ header {
     margin: 20px;
 }
 
-.filter-btn {
+.filter-btn, select {
     background: #e1c699;
     border: none;
     padding: 10px 20px;
